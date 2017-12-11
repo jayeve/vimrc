@@ -28,8 +28,13 @@ set guioptions-=l
 set guioptions-=L
 
 " Colorscheme
-set background=dark
-colorscheme peaksea
+"set background=dark
+colorscheme vividchalk
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => relative line numbers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set relativenumber
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,6 +53,16 @@ try
     set undofile
 catch
 endtry
+
+""""""""""""""""""""""""""""""
+" => Trailing whitespace highlight
+""""""""""""""""""""""""""""""
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
